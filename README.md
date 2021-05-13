@@ -5,7 +5,11 @@ This project is for my master degree, subject "Artificial intelligence".
 This application receives an image from a mobile app, the image is proccessed with a python script and resturns the response to the mobile (or client) the response contains info about what things in the image are in there
 
 ## Pre-requisites
-- NodeJS
+- NodeJS v14
+- Postman 
+  
+Once you have postman installed try to hit this endpoint:
+(POST) http://localhost:3000/process-image
 
 ## Run
 `npm i`

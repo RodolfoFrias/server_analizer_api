@@ -7,13 +7,12 @@ module.exports = class {
 
     async processImage(req, res, next){
         try {
-            console.log(req.file)
             let responseObj, filePath;
             if(!req.file){
                throw new Error('Upload an image');
             }
             Promise.all([
-                {responseObj, filePath} = await this.service.analizeImage(req.file),
+                { responseObj, filePath } = await this.service.analizeImage(req.file),
                 await this.service.deleteImage(filePath)
             ]);
             res.status(200).json(responseObj);   

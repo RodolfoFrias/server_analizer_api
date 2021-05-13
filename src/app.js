@@ -11,8 +11,17 @@ const storage = multer.diskStorage({
         cb(null,path.join(__dirname,'/images'));
     },
     filename:function(req,file,cb){//Indica el nombre del archivo
+        console.log('Imag received - ', file);
         cb(null,`${file.fieldname}.${file.mimetype.split('/')[1]}`);
     }
+});
+
+//Cors
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, responseType');  
+    next();
 });
 
 app.use(express.json());
