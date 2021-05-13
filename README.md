@@ -11,6 +11,9 @@ This application receives an image from a mobile app, the image is proccessed wi
 Once you have postman installed try to hit this endpoint:
 (POST) http://localhost:3000/process-image
 
+## Example to open a PR
+- create a new branch (feature/{name of the feature})
+
 ## Run
 `npm i`
 `npm run start:dev`
