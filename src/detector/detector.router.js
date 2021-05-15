@@ -3,7 +3,7 @@
 const router = require('express').Router();
 const DetectorService = require('./detector.service');
 const DetectorController = require('./detector.controller');
-
+const Image = Parse.Object.extend('Image');
 
 const initRouter = (controller) => {
     router.post('/process-image', controller.processImage.bind(controller));
@@ -11,5 +11,5 @@ const initRouter = (controller) => {
 }
 
 module.exports = initRouter(
-    new DetectorController(new DetectorService())
+    new DetectorController(new DetectorService(Image))
 )
