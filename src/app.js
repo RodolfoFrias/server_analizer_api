@@ -9,7 +9,6 @@ const app = express();
 const multer = require('multer');
 const path = require('path');
 const detectorRoutes = require('./detector/detector.router');
-const dotenv = require('dotenv');
 
 const storage = multer.diskStorage({
     destination:function (req,file,cb){//Indica la carpeta de destino
