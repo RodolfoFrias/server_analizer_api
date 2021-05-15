@@ -50,7 +50,8 @@ module.exports = class {
 
     async deleteImage(req, res, next){
         try {
-            await this.service.deleteImage(req);
+            console.log('REQUEST: ', req.query);
+            await this.service.deleteImageFromDb(req);
             res.status(200).json({
                 message: 'Image deleted!'
             });

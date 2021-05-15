@@ -51,7 +51,7 @@ module.exports = class {
         return query.findAll();
     }
 
-    async deleteImage(requestObject){
+    async deleteImageFromDb(requestObject){
         const { imageid } = requestObject.query;
         const query = new Parse.Query(this.imageClass);
         query.equalTo('objectId', imageid);
