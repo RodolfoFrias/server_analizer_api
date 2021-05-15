@@ -24,9 +24,9 @@ module.exports = class {
               // results is an array consisting of messages collected during execution 
               console.log('results: %j', results);
 
-              await this.saveImage(file, results);
+              await this.saveImage(file, results, filePath);
 
-              responseObj.images = await this.getImages();
+              responseObj.response = 'Image analized!';
 
               resolve({responseObj, filePath });
             });
@@ -38,10 +38,11 @@ module.exports = class {
         console.log(`File from ${filePath} removed`);
     }
 
-    async saveImage(file, results){
+    async saveImage(file, results, filePath){
         const newimage = new this.imageClass();
-        const dataBase64 = file.toString('base64');
-        const parseFile = new Parse.File(file.originalname, { base64: dataBase64 });
+        const image = await fs.readFile(filePath);
+        const dataBase64 = image.toString('base64');
+        const parseFile = new Parse.File(file.originalname, { base64: dataBase64 }, file.mimetype);
         newimage.set('file', parseFile);
         newimage.set('description', results);
         return newimage.save();

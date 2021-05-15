@@ -7,6 +7,7 @@ const Image = Parse.Object.extend('Image');
 
 const initRouter = (controller) => {
     router.post('/process-image', controller.processImage.bind(controller));
+    router.get('/images', controller.getImages.bind(controller));
     return router;
 }
 
