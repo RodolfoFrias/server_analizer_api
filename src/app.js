@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
     }
 });
 
-dotenv.config();
 let databaseUri = 'mongodb://localhost:27017/analizer';
 let appId = 'myAppId';
 let masterKey = 'myMasterKey';
