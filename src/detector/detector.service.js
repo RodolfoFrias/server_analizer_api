@@ -23,9 +23,7 @@ module.exports = class {
               if (err) reject(err);
               // results is an array consisting of messages collected during execution 
               console.log('results: %j', results);
-
               await this.saveImage(file, results, filePath);
-
               responseObj.response = 'Image analized!';
 
               resolve({responseObj, filePath });
@@ -51,6 +49,14 @@ module.exports = class {
     async getImages(){
         const query = new Parse.Query(this.imageClass);
         return query.findAll();
+    }
+
+    async deleteImage(requestObject){
+        const { imageid } = requestObject.query;
+        const query = new Parse.Query(this.imageClass);
+        query.equalTo('objectId', imageid);
+        const image = await query.first();
+        return image.destroy(null, {useMasterKey: true});
     }
 
 }

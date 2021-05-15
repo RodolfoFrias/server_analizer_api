@@ -48,4 +48,24 @@ module.exports = class {
         }
     }
 
+    async deleteImage(req, res, next){
+        try {
+            await this.service.deleteImage(req);
+            res.status(200).json({
+                message: 'Image deleted!'
+            });
+        } catch (error) {
+            console.log(error);
+            if(!error.statusCode){
+                error.statusCode = 500;
+            }
+            res.status(error.statusCode).json(
+                {
+                    message: 'Something went wrong', 
+                    status: error.statusCode
+                }
+            );
+        }
+    }
+
 }
