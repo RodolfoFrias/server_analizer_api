@@ -26,12 +26,11 @@ def predict(image):
 	# predict the probability across all output classes
 	yhat = model.predict(image)
 	# convert the probabilities to class labels
-	label = decode_predictions(yhat)
+	label = decode_predictions(yhat, top=10)
 	label = label[0][0]
-	# print the classification
-	# print('label:',label)
-	print('%s (%.2f%%)' % (label[1], label[2]*100))	
-	# return label
+	for item in range(0, 10):
+		print(f"{label[0][item][1]}:{round(float(label[0][item][2])*100,2)}")
+
 
 def init():
 	imagePath = sys.argv[1]
