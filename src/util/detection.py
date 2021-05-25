@@ -26,9 +26,9 @@ def predict(image):
 	# predict the probability across all output classes
 	yhat = model.predict(image)
 	# convert the probabilities to class labels
-	label = decode_predictions(yhat, top=10)
-	label = label[0][0]
-	for item in range(0, 10):
+	label = decode_predictions(yhat, top=5)
+	# label = label[0][0]
+	for item in range(0, 5):
 		print(f"{label[0][item][1]}:{round(float(label[0][item][2])*100,2)}")
 
 
