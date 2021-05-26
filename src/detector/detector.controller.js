@@ -2,18 +2,20 @@
 
 module.exports = class {
     constructor(detectorService){
-        this.service = detectorService
+        this.detectorService = detectorService
     }
 
     async processImage(req, res, next){
         try {
+            console.log(req.file)
             let responseObj, filePath;
             if(!req.file){
                throw new Error('Upload an image');
             }
+            console.log('ok')
             Promise.all([
-                { responseObj, filePath } = await this.service.analizeImage(req.file),
-                await this.service.deleteImage(filePath)
+                { responseObj, filePath } = await this.detectorService.analizeImage(req.file),
+                await this.detectorService.deleteImage(filePath)
             ]);
             res.status(200).json(responseObj); 
         } catch (error) {
